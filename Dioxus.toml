@@ -1,0 +1,27 @@
+[application]
+
+# App (Project) Name
+name = "dioxus_fullstack_flake"
+# Currently supported platforms: web, desktop
+default_platform = "web"
+out_dir = "dist"
+
+[web.app]
+
+# HTML title tag content
+title = "dioxus_fullstack_flake"
+
+# include `assets` in web platform
+[web.resource]
+
+# Additional CSS style files
+style = []
+
+# Additional JavaScript files
+script = []
+
+[web.resource.dev]
+
+# Javascript code file
+# serve: [dev-server] only
+script = []
