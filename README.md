@@ -1,7 +1,8 @@
 This project is just the jumpstart template with fullstack and router from using `dx new` and building it on nix(os)
 
 Of note: the version of wasm-bindgen in Cargo.lock must match wasm-bindgen-cli from nix, so we are using an override to get the correct version
-dioxus-cli then expects the wasm-bindgen executable to be at $XDG_DATA_HOME/dioxus/wasm-bindgen/wasn-bindgen-${wasm-bindgen.version}, but we have to wrap the dioxus-cli binary right now becasue the nix builder user doesn't have a $HOME, hopefully a future version of dioxus-cli will have a flag or something
+we currently also have an override for dioxus-cli because 0.6.0 which is available on nixos-unstable right now requires 0.2.97 of wasm-bindgen so we use 0.6.1 matching dioxus itself which wants 0.2.99 of wasm-bindgen
+dioxus-cli then expects the wasm-bindgen executable to be at `$XDG_DATA_HOME/dioxus/wasm-bindgen/wasn-bindgen-${wasm-bindgen.version}`
 
 # TODO
 The next logical step is to make sure this flake can also build the desktop platform, maybe mobile apps
