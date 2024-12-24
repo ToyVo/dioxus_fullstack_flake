@@ -2,9 +2,6 @@
 
 # App (Project) Name
 name = "dioxus_fullstack_flake"
-# Currently supported platforms: web, desktop
-default_platform = "web"
-out_dir = "dist"
 
 [web.app]
 
