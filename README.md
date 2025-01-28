@@ -1,8 +1,8 @@
 This project is just the jumpstart template with fullstack and router from using `dx new` and building it on nix(os)
 
-Of note: the version of wasm-bindgen in Cargo.lock must match wasm-bindgen-cli from nix, so we are using an override to get the correct version
-we currently also have an override for dioxus-cli because 0.6.0 which is available on nixos-unstable right now requires 0.2.97 of wasm-bindgen so we use 0.6.1 matching dioxus itself which wants 0.2.99 of wasm-bindgen
-dioxus-cli then expects the wasm-bindgen executable to be at `$XDG_DATA_HOME/dioxus/wasm-bindgen/wasn-bindgen-${wasm-bindgen.version}`
+Of note: the version of wasm-bindgen in Cargo.lock must match wasm-bindgen-cli from nix. Right now the latest 0.2.100 is on nixos-unstable, but an override might be needed in case they differ for whatever reason.
+we currently have an override for dioxus-cli because nixos-unstable is on 0.6.0 which requires 0.2.97 of wasm-bindgen
+0.6.2 has changes to make building within nix easier
 
 # TODO
 The next logical step is to make sure this flake can also build the desktop platform, maybe mobile apps
@@ -20,6 +20,9 @@ If you chose to develop with the router feature, you will also have a `views` fo
 ```bash
 npx tailwindcss -i ./input.css -o ./assets/tailwind.css --watch
 ```
+```bash
+nix run nixpkgs#tailwindcss -- -i ./input.css -o ./assets/tailwind.css --watch
+```
 
 ### Serving Your App
 
@@ -28,9 +31,15 @@ Run the following command in the root of your project to start developing with t
 ```bash
 dx serve --platform web
 ```
+```bash
+nix run .#dioxus-cli -- serve --platform web
+```
 
 To run for a different platform, use the `--platform platform` flag. E.g.
 ```bash
 dx serve --platform desktop
+```
+```bash
+nix run .#dioxus-cli -- serve --platform desktop
 ```
 
