@@ -71,11 +71,7 @@
 
           formatter = pkgs.nixfmt-rfc-style;
           packages = rec {
-            dioxus-cli = pkgs.callPackage (pkgs.fetchurl {
-              # This is just a PR right now
-              url = "https://raw.githubusercontent.com/NixOS/nixpkgs/5ed79cb1764e09567a40d991134080827824f31c/pkgs/by-name/di/dioxus-cli/package.nix";
-              hash = "sha256-uVnhc48utRK4milqv6OgkHbH6Y7Zu27ixHryf5dN0/c=";
-            }) {};
+            dioxus-cli = pkgs.callPackage ./dioxus-cli.nix {};
             default =
               let
                 cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
