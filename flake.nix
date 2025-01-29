@@ -7,6 +7,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     # crane.url = "github:ipetkov/crane";
     # crane.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-dioxus.url = "github:CathalMullan/nixpkgs/dioxus-cli-v0.6.2";
   };
 
   outputs =
@@ -66,12 +67,14 @@
             inherit system;
             overlays = [
               inputs.rust-overlay.overlays.default
+              (final: prev: {
+                dioxus-cli = inputs.nixpkgs-dioxus.legacyPackages.${prev.system}.dioxus-cli;
+              })
             ];
           };
 
           formatter = pkgs.nixfmt-rfc-style;
           packages = rec {
-            dioxus-cli = pkgs.callPackage ./dioxus-cli.nix {};
             default =
               let
                 cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
@@ -83,12 +86,11 @@
                 src = ./.;
                 strictDeps = true;
                 buildInputs = rustBuildInputs;
-                nativeBuildInputs = [
+                nativeBuildInputs = with pkgs; [
                   dioxus-cli
                   rustToolchain
-                  pkgs.rustPlatform.bindgenHook
-                  pkgs.wasm-bindgen-cli
-                  pkgs.binaryen
+                  rustPlatform.bindgenHook
+                  wasm-bindgen-cli
                 ] ++ rustBuildInputs;
                 buildPhase = ''
                   dx build --release --platform web
@@ -105,9 +107,11 @@
           devShells.default = pkgs.mkShell {
             name = "dioxus-dev";
             buildInputs = rustBuildInputs;
-            nativeBuildInputs = [
+            nativeBuildInputs = with pkgs; [
               # Add shell dependencies here
               rustToolchain
+              wasm-bindgen-cli
+              dioxus-cli
             ];
             shellHook = ''
               # For rust-analyzer 'hover' tooltips to work.

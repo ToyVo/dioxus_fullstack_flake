@@ -32,7 +32,7 @@ Run the following command in the root of your project to start developing with t
 dx serve --platform web
 ```
 ```bash
-nix run .#dioxus-cli -- serve --platform web
+nix run github:CathalMullan/nixpkgs/dioxus-cli-v0.6.2#dioxus-cli -- serve --platform web
 ```
 
 To run for a different platform, use the `--platform platform` flag. E.g.
@@ -40,6 +40,6 @@ To run for a different platform, use the `--platform platform` flag. E.g.
 dx serve --platform desktop
 ```
 ```bash
-nix run .#dioxus-cli -- serve --platform desktop
+nix run github:CathalMullan/nixpkgs/dioxus-cli-v0.6.2#dioxus-cli -- serve --platform desktop
 ```
 
