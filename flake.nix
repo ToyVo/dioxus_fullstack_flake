@@ -7,7 +7,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     # crane.url = "github:ipetkov/crane";
     # crane.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-dioxus.url = "github:CathalMullan/nixpkgs/dioxus-cli-v0.6.2";
+    nixpkgs-dioxus.url = "github:NixOS/nixpkgs?ref=pull/375874/head";
   };
 
   outputs =
@@ -90,7 +90,7 @@
                   dioxus-cli
                   rustToolchain
                   rustPlatform.bindgenHook
-                  wasm-bindgen-cli
+                  wasm-bindgen-cli_0_2_100
                 ] ++ rustBuildInputs;
                 buildPhase = ''
                   dx build --release --platform web
@@ -110,7 +110,7 @@
             nativeBuildInputs = with pkgs; [
               # Add shell dependencies here
               rustToolchain
-              wasm-bindgen-cli
+              wasm-bindgen-cli_0_2_100
               dioxus-cli
             ];
             shellHook = ''
