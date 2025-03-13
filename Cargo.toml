@@ -2,7 +2,7 @@
 name = "dioxus_fullstack_flake"
 version = "0.1.0"
 authors = ["Collin Diekvoss <Collin@Diekvoss.com>"]
-edition = "2021"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -10,7 +10,7 @@ edition = "2021"
 dioxus = { version = "0", features = ["router", "fullstack"] }
 
 [features]
-default = []
+default = ["web"]
 server = ["dioxus/server"]
 web = ["dioxus/web"]
 desktop = ["dioxus/desktop"]

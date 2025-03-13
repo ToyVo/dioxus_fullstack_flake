@@ -7,7 +7,6 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     # crane.url = "github:ipetkov/crane";
     # crane.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-dioxus.url = "github:NixOS/nixpkgs?ref=pull/375874/head";
   };
 
   outputs =
@@ -67,9 +66,6 @@
             inherit system;
             overlays = [
               inputs.rust-overlay.overlays.default
-              (final: prev: {
-                dioxus-cli = inputs.nixpkgs-dioxus.legacyPackages.${prev.system}.dioxus-cli;
-              })
             ];
           };
 
